@@ -55,27 +55,21 @@ def prikazi_plosco(plosca):
 
 # Prva verzij funkcije, ki po vsaki potezi na naključno prazno mesto doda 2
 def nova_dve(plosca):
-    i = random.randint(0, len(plosca) - 1)
-    j = random.randint(0, len(plosca) - 1)
-    if plosca[i][j] == 0:
-        plosca[i][j] = 2
-    else:
-        nova_dve(plosca)
-    return plosca
-# Dela, ampak izgleda utrujajoče
-
-# Druga verzija funkcije, ki po vsaki potezi na naključno prazno mesto doda 2
-def nova_dve2(plosca):
     prazne = []
     for i in range(len(plosca)):
         for j in range(len(plosca)):
             if plosca[i][j] == 0:
                 prazne.append((i,j))
-    mesto = random.choice(prazne)
-    plosca[mesto[0]][mesto[1]] = 2
+    if not prazne == []:
+        mesto = random.choice(prazne)
+        # Funkcija random.choices doda težo izbiri, verjetnost, da se
+        # na naključno mesto po potezi prikaže številka 2 bo 90 %
+        plosca[mesto[0]][mesto[1]] = random.choices((2,4),(9,1))[0]
     return plosca
 # Dela, verjetno hitreje
 
+# Funkcija, ki premakne vse elemente seznama na njega začetek,
+# če sta dva zaporedna neničelna elementa enaka, ju združi in sešteje.
 def poteza_vrstica(vrstica):
     nicle = []
     nenicelni = []
@@ -84,14 +78,16 @@ def poteza_vrstica(vrstica):
             nicle.append(cifra)
         else:
             nenicelni.append(cifra)
-    nenicelni_dolzina = len(nenicelni)
-    for i in range(nenicelni_dolzina-1):
+    i = 0
+    while i < len(nenicelni) - 1:
         if nenicelni[i] == nenicelni[i+1]:
             nenicelni[i] += nenicelni[i+1]
             del nenicelni[i+1]
             nicle.append(0)
+        i += 1
     return nenicelni + nicle
 
+# Dela enako kot zgornja funkcija, vendar se izvede na seznamu seznamov.
 def poteza_levo(plosca):
     n = len(plosca)
     po_potezi = []
@@ -101,32 +97,44 @@ def poteza_levo(plosca):
     return po_potezi
 
 class Igra:
-
+    
     def __init__(self, plosca=ustvari_plosco(4), rezultat=0):
-        self.plosca = plosca
+        self.plosca = nova_dve(plosca)
+        self.plosca = nova_dve(self.plosca)
         self.rezultat = rezultat
-
+        print('***ZAČNI IGRO***')
+        self.stanje()
+        
     def stanje(self):
         print('-------')
         prikazi_plosco(self.plosca)
         print('-------')
+        
+        poteza = input('Naredite potezo.')
 
-    def tocka(self):
-        self.rezultat = self.rezultat + 1
-
-    def dvojka(self):
-        self.plosca = nova_dve2(self.plosca)
-        return self.plosca
+        if poteza == 'levo':
+            self.levo()
+        if poteza == 'desno':
+            self.desno()
+        if poteza == 'dol':
+            self.dol()
+        if poteza == 'gor':
+            self.gor()
+        
+    def tocke(self):
+        vsota = 0
 
     def levo(self):
         self.plosca = poteza_levo(self.plosca)
-        return self.plosca
+        self.plosca = nova_dve(self.plosca)
+        self.stanje()
 
     def dol(self):
         self.plosca = obrni90d(self.plosca)
         self.plosca = poteza_levo(self.plosca)
         self.plosca = obrni90l(self.plosca)
-        return self.plosca
+        self.plosca = nova_dve(self.plosca)
+        self.stanje()
 
     def desno(self):
         self.plosca = obrni90d(self.plosca)
@@ -134,13 +142,16 @@ class Igra:
         self.plosca = poteza_levo(self.plosca)
         self.plosca = obrni90l(self.plosca)
         self.plosca = obrni90l(self.plosca)
-        return self.plosca
+        self.plosca = nova_dve(self.plosca)
+        self.stanje()
 
     def gor(self):
         self.plosca = obrni90l(self.plosca)
         self.plosca = poteza_levo(self.plosca)
         self.plosca = obrni90d(self.plosca)
-        return self.plosca
+        self.plosca = nova_dve(self.plosca)
+        self.stanje()
 
-# Popravi funkcijo poteza_vrstica, ker ne dela, če je v isti vrstici
-# preveč členov
+    def konec_igre(self):
+        if self.stanje() == self.levo():
+            print('***KONEC IGRE***')
