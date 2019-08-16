@@ -34,16 +34,35 @@ def obrni90d(plosca):
 
 
 # Funkcija, ki prikaže ustvarjeno ploščo v terminalu
+#def prikazi_plosco(plosca):
+#    for vrstica in plosca:
+#        vrsta = str()
+#        for nula in vrstica:
+#            vrsta += str(nula) + " "
+#        # metoda r.strip odstrani zadnji presledek v vsaki vrstici
+#        print(vrsta.rstrip())
+
+def stevilo_znakov(vrstica):
+    niz = ''
+    for cifra in vrstica:
+        niz += str(cifra)
+    return len(niz)
+
+# Izboljsana funkcija prikazi_plosco, ki poravna stolpce, vsi stolpci naj bodo enako oddaljeni
 def prikazi_plosco(plosca):
+    najdaljsi_plosca = 1
+    for vrstica in plosca:
+        najdaljsi_vrstica = 1
+        for cifra in vrstica:
+            najdaljsi_vrstica = max(najdaljsi_vrstica, len(str(cifra)))
+        najdaljsi_plosca = max(najdaljsi_plosca, najdaljsi_vrstica)
+    poravnaj_stolpce = najdaljsi_plosca
     for vrstica in plosca:
         vrsta = str()
-        for nula in vrstica:
-            vrsta += str(nula) + " "
-        # metoda r.strip odstrani zadnji presledek v vsaki vrstici
-        print(vrsta.rstrip())
-
-#def prikazi_plosco_2(plosca):
-
+        for cifra in vrstica:
+            dodatni_presledki = poravnaj_stolpce - len(str(cifra))
+            vrsta += str(cifra) + " " + dodatni_presledki * " "
+        print(vrsta)
 
 # Funkcija, ki po vsaki potezina naključno mesto doda število 2 oz 4.
 def nova_dve(plosca):
@@ -106,19 +125,22 @@ def poteza_levo_tocke(plosca):
 
 class Igra:
     
-    def __init__(self, plosca=ustvari_plosco(4), rezultat = 0):
-        self.plosca = nova_dve(plosca)
+    def __init__(self, dim=4, rezultat = 0):
+        self.dim = dim
+        self.plosca = nova_dve(ustvari_plosco(self.dim))
         self.plosca = nova_dve(self.plosca)
         self.rezultat = rezultat
         print('***ZAČNI IGRO***')
         self.stanje()
         
+
     def stanje(self):
-        print('-------')
+        print(' ')
         prikazi_plosco(self.plosca)
-        print('-------')
+        print(' ')
+        print('----------------------')
         print('Vaš rezultat: {0}'.format(self.rezultat))
-        print('-------')
+        print('----------------------')
         self.potek()
         #self.zmaga()
         self.ponovna()
@@ -144,17 +166,21 @@ class Igra:
         print('Končen rezultat: {0}'.format(self.rezultat))
         self.rezultat = 0
 
+
     def ponovna(self):
         ponovna_igra = input('Želite ponovno igrati?')
         if ponovna_igra == 'da':
-            self.plosca = ustvari_plosco(4)
+            self.plosca = ustvari_plosco(self.dim)
             self.plosca = nova_dve(self.plosca)
             self.plosca = nova_dve(self.plosca)
             self.stanje()
-        else:
+        elif ponovna_igra == "ne":
             print('Lep dan vam želim!')
             quit()
+        else:
+            self.ponovna()
         
+
     #def zmaga(self):
     #    if not self.ye():
     #        print('aj še mal')
@@ -239,8 +265,10 @@ class Igra:
         return False
 
 # dodaj:          
-# čestitke ob zmagi, 'želite nadaljevati?', pynput tipke za igranje, ko so cifre večje, ne zgleda lepo
-# če se nepremakne
+# čestitke ob zmagi, 'želite nadaljevati?', pynput tipke za igranje, highscore?
+# loči vmesnik in model!!!
+# program, ki bo reševal ta program!!!
 
 # progress: REZULTAT!, restart, konec na ukaz, konec igre, ne doda dvojke če ni veljavna poteza, napise 'neveljavna poteza'
+# poravna stolpce
 Igra()
