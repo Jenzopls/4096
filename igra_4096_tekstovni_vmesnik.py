@@ -18,7 +18,6 @@ def igraj():
 
 def prikazi_plosco(igra):
     plosca = igra[0]
-    print()
     print('----------------------')
     print()
     najdaljsi_plosca = 1
@@ -39,7 +38,6 @@ def prikazi_plosco(igra):
 def potek_igre(igra):
     while not i.konec_igre(igra):
         ob_zmagi(igra)
-        print()
         poteza = input('Naredite potezo. ')
         while not poteza in ['a','s','d','w','x']:
             neveljavna_poteza_tekst()
@@ -75,7 +73,7 @@ def tocke(igra):
     print('----------------------')
     print('Vaš rezultat: {0}'.format(rezultat))
     print('----------------------') 
-    print()
+    
 
 def ob_zmagi(igra):
     plosca = igra[0]
@@ -86,7 +84,6 @@ def ob_zmagi(igra):
                 print()
                 print('***ČESTITAMO***')
                 prikazi_plosco(igra)
-                print()
                 igraj_dalje = input('Želite nadaljevati z igro? ')
                 while not igraj_dalje in ['w', 's']:
                     igraj_dalje = input('Želite nadaljevati z igro? ')
@@ -96,7 +93,7 @@ def ob_zmagi(igra):
                     prikazi_plosco(igra)
                     potek_igre(igra)
                 if igraj_dalje == 's':
-                    ali_zelite_koncati()
+                    ali_zelite_koncati(igra)
 
 def ponovna_vmesnik():
     print()
