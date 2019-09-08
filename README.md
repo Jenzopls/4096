@@ -22,7 +22,7 @@ Pa prijetno igranje želim.
 Na začetku se pojavita dve neničelni števili (2 ali 4... verjetno 2), po vsaki potezi pa se
 na naključnem mestu pojavi novo. Z igralnimi tipkami premikamo števila v izbrani smeri po igralni plošči.
 Če se med tem početjem dve enaki števili zaletita, se združita v njuno vsoto.
-Naš cilj je na igralni plošči doseči zmagovalno število. Le-to je odvisno od izbrane velikosti plošče,
+Naš cilj je na igralni plošči doseči zmagovalno število.\n Le-to je odvisno od izbrane velikosti plošče,
 določeno pa je z naslednjo skrbno izbrano formulo, kjer dim označuje dimenzijo plošče:
 2 ** (1 + (dim * (dim + 1))//2), za dim < 5.
 2 ** (7 + dim)
