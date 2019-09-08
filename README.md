@@ -35,21 +35,21 @@ potrebnih potez, zato vam ne priporočam izbire kakšnih vrtoglavih dimenzij, č
  
 # Igralne tipke
 
-levo = 'a'
+'a' = levo
 
-dol = 's'
+'s' = dol
 
-desno = 'd'
+'d' = desno
 
-gor = 'w'
+'w' = gor
 
 Tipki 'w' in 's' uporabljamo tudi pri vprašanjih, ki zahtevajo pritrdilen oziroma nikalen odgovor
 (npr. 'Želite nadaljevati z igro?', 'Ali ste prepričani?')
 In sicer:
 
-DA = 'w'
+'w' = DA
 
-NE = 's'
+'s' = NE
 
 Če se med igro odločite, da ne želite več igrati, vnesite tipko 'x'.
 Seveda vas igra vpraša, če je vaša odločitev dokončna.
