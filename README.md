@@ -15,3 +15,37 @@ Ne odgovarjam pa za grenke občutke, ki bi se mu porodili, če bi ta različica 
 od njegove.
 
 Pa prijetno igranje želim.
+
+# Pravila igre
+
+4096 se igra na kvadratni številski mreži poljubne(ja, poljubne) velikosti, ki jo igralec ob pričetku igre določi.
+Na začetku se pojavita dve neničelni števili (2 ali 4... verjetno 2), po vsaki potezi pa se
+na naključnem mestu pojavi novo. Z igralnimi tipkami premikamo števila v izbrani smeri po igralni plošči.
+Če se med tem početjem dve enaki števili zaletita, se združita v njuno vsoto.
+Naš cilj je na igralni plošči doseči zmagovalno število. Le-to je odvisno od izbrane velikosti plošče,
+določeno pa je z naslednjo skrbno izbrano formulo, kjer dim označuje dimenzijo plošče:
+2 ** (1 + (dim * (dim + 1))//2), za dim < 5.
+2 ** (7 + dim)
+velikost plošče:       2      3      4      5      6      7      ...
+zmagovalno število:    16     128    2048   4096   8192   16384  ...
+Očitno se število, ki ga želimo doseči, z naraščanjem velikosti plošče hitro spreminja in s tem tudi število
+potrebnih potez, zato vam ne priporočam izbire kakšnih vrtoglavih dimenzij, če želite v tem tednu zmagati igro.
+
+
+# Igralne tipke
+
+levo = 'a'
+dol = 's'
+desno = 'd'
+gor = 'w'
+
+Tipki 'w' in 's' uporabljamo tudi pri vprašanjih, ki zahtevajo pritrdilen oziroma nikalen odgovor
+(npr. 'Želite nadaljevati z igro?', 'Ali ste prepričani?')
+In sicer:
+DA = 'w'
+NE = 's'
+
+Če se med igro odločite, da ne želite več igrati, vnesite tipko 'x'.
+Seveda vas igra vpraša, če je vaša odločitev dokončna.
+
+Po vsakem vnosu tipke potezo potrdimo s tipko ENTER.
