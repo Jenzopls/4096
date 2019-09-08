@@ -18,7 +18,7 @@ Pa prijetno igranje želim.
 
 # Pravila igre
 
-4096 se igra na kvadratni številski mreži poljubne(ja, poljubne) velikosti, ki jo igralec ob pričetku igre določi.
+4096 se igra na kvadratni številski mreži poljubne (ja, poljubne) velikosti, ki jo igralec ob pričetku igre določi.
 Na začetku se pojavita dve neničelni števili (2 ali 4... verjetno 2), po vsaki potezi pa se
 na naključnem mestu pojavi novo. Z igralnimi tipkami premikamo števila v izbrani smeri po igralni plošči.
 Če se med tem početjem dve enaki števili zaletita, se združita v njuno vsoto.
