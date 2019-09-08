@@ -30,8 +30,7 @@ velikost plošče:       2      3      4      5      6      7      ...
 zmagovalno število:    16     128    2048   4096   8192   16384  ...
 Očitno se število, ki ga želimo doseči, z naraščanjem velikosti plošče hitro spreminja in s tem tudi število
 potrebnih potez, zato vam ne priporočam izbire kakšnih vrtoglavih dimenzij, če želite v tem tednu zmagati igro.
-
-
+ 
 # Igralne tipke
 
 levo = 'a'
