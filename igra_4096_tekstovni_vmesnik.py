@@ -1,8 +1,7 @@
 import igra_4096_model as i
 
-
 def igraj():
-    print('***IGRA 4096***')
+    print('*** IGRA 4096 ***')
     print()
     dim_str = input('Izberite velikost igralne plošče: ')
     while not dim_str.isdigit():
@@ -10,35 +9,40 @@ def igraj():
     dim = int(dim_str)
     igra = [i.ustvari_plosco(dim), i.rezultat]
     plosca = igra[0]
+    print('*** VAŠ CILJ: {} ***'.format(i.zmagovito_stevilo(plosca)))
     plosca = i.nova_dve(plosca)
     plosca = i.nova_dve(plosca)
     igra[0] = plosca
     prikazi_plosco(igra)
     potek_igre(igra)
 
+# Prikaže ploščo, skupaj z okrasom in rezultatom
 def prikazi_plosco(igra):
     plosca = igra[0]
-    print('----------------------')
-    print()
     najdaljsi_plosca = 1
     for vrstica in plosca:
         najdaljsi_vrstica = 1
         for cifra in vrstica:
             najdaljsi_vrstica = max(najdaljsi_vrstica, len(str(cifra)))
         najdaljsi_plosca = max(najdaljsi_plosca, najdaljsi_vrstica)
-    poravnaj_stolpce = najdaljsi_plosca
+    # Del, ki skrbi za lep okras okoli plosce
+    okras = len(plosca) * '--' + len(plosca) * (najdaljsi_plosca - 1) * '-'
+    print(okras)
     for vrstica in plosca:
         vrsta = str()
         for cifra in vrstica:
-            dodatni_presledki = poravnaj_stolpce - len(str(cifra))
+            dodatni_presledki = najdaljsi_plosca - len(str(cifra))
             vrsta += str(cifra) + " " + dodatni_presledki * " "
         print(vrsta)
+    print(okras)
     tocke(igra)
-        
+    
+# Komunicira z igralcem
 def potek_igre(igra):
     while not i.konec_igre(igra):
         ob_zmagi(igra)
         poteza = input('Naredite potezo. ')
+        print()
         while not poteza in ['a','s','d','w','x']:
             neveljavna_poteza_tekst()
             potek_igre(igra)
@@ -67,22 +71,28 @@ def potek_igre(igra):
         prikazi_plosco(igra)
     ponovna_vmesnik()
 
+# Prikaže trenuten rezultat
 def tocke(igra):
     rezultat = igra[1]
     print()
     print('----------------------')
     print('Vaš rezultat: {0}'.format(rezultat))
     print('----------------------') 
-    
 
+# Program z vami tudi proslavlja zmago!
 def ob_zmagi(igra):
     plosca = igra[0]
-    zmagovito_stevilo = 2 ** (1 + sum([x for x in range(len(plosca) + 1)]))
     if i.zmaga == False:
-        for vrstica in plosca: 
-            if zmagovito_stevilo in vrstica:
+        for vrstica in plosca:
+            if i.zmagovito_stevilo(plosca) in vrstica:
                 print()
-                print('***ČESTITAMO***')
+                print('* * * * * * * *')
+                print(' * * * * * * * ')
+                print('  * * * * * *  ')
+                print(' * ČESTITAMO * ')
+                print('  * * * * * *  ')
+                print(' * * * * * * * ')
+                print('* * * * * * * *')
                 prikazi_plosco(igra)
                 igraj_dalje = input('Želite nadaljevati z igro? ')
                 while not igraj_dalje in ['w', 's']:
@@ -95,6 +105,7 @@ def ob_zmagi(igra):
                 if igraj_dalje == 's':
                     ali_zelite_koncati(igra)
 
+# Vpraša, če želite igrati znova.
 def ponovna_vmesnik():
     print()
     print('***KONEC IGRE***')
@@ -109,17 +120,20 @@ def ponovna_vmesnik():
         print('Lep dan vam želim!')
         quit()     
 
+# Se poslovi.
 def nasvidenje():
     print()
     print('***KONEC IGRE***')
     print()
     print('Lep dan vam želim!')
     quit()
-                        
+
+# Opozori na neveljavno potezo.                
 def neveljavna_poteza_tekst():
     print('Oprostite, vaša poteza ni veljavna.')
     print('Poskusite ponovno. ')
         
+# Vpraša ali ste prepričani, da želite skleniti igro.
 def ali_zelite_koncati(igra):
     potrditev = input('Ali ste prepričani, da želite končati? ')
     while not potrditev in ['w','s']:
@@ -131,5 +145,3 @@ def ali_zelite_koncati(igra):
         potek_igre(igra)
 
 igraj()
-
-# good job boi, dodaj še točke
