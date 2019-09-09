@@ -44,7 +44,7 @@ potrebnih potez, zato vam ne priporočam izbire kakšnih vrtoglavih dimenzij, č
 'w' = gor
 
 Tipki 'w' in 's' uporabljamo tudi pri vprašanjih, ki zahtevajo pritrdilen oziroma nikalen odgovor
-(npr. 'Želite nadaljevati z igro?', 'Ali ste prepričani?')
+(npr. 'Želite nadaljevati z igro?', 'Ali ste prepričani?').
 In sicer:
 
 'w' = DA
