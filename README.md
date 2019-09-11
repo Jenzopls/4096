@@ -1,8 +1,8 @@
 # 4096
 
 V stilu legendarne igre 2048, ki je leta 2014 zagospodarila nad uporabniki mobilnih telefonov,
-predstavljam igro, ki deluje enako kot njena predhodnica, s tem da je uporabniška izkušnja
-veliko manj izpiljena.
+predstavljam igro, ki deluje podobno kot njena predhodnica, s tem da je uporabniška izkušnja
+mnogo manj izpiljena.
 In da sem jo ustvaril jaz.
 
 Tudi njen stvarnik, takrat še 19-letni Gabrielle Cirulli, je igro 2048 osnoval na podobni igri,
@@ -30,7 +30,7 @@ določeno pa je z naslednjo skrbno izbrano formulo, kjer dim označuje dimenzijo
 2 ** (7 + dim)
 
 Cilj pri 2x2 igri je torej 16, pri 3x3 128, pri 4x4 2048, pri 5x5 4096, pri 6x6 8192, itd.
-Očitno se število, ki ga želimo doseči, z naraščanjem velikosti plošče hitro spreminja in s tem tudi število
+Očitno število, ki ga želimo doseči, z naraščanjem velikosti plošče naglo narašča in s tem tudi število
 potrebnih potez, zato vam ne priporočam izbire kakšnih vrtoglavih dimenzij, če želite v tem tednu zmagati igro.
  
 # Igralne tipke
