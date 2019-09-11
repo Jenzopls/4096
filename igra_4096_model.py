@@ -1,5 +1,4 @@
 import random
-from pynput import keyboard
 
 # Pripravi igralno plosco za zacetek igre.
 def igra(dim):
